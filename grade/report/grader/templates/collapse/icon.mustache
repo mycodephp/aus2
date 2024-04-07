@@ -1,0 +1,65 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template gradereport_grader/collapse/icon
+
+    Context variables required for this template:
+    * field - Either the shortname of the user field or a grade item ID.
+
+    Example context (json):
+    {
+        "field": "42",
+        "name": "Meaning of life"
+    }
+}}
+<button type="button" class="btn btn-link btn-icon icon-size-3" data-hider="expand" data-col="{{field}}">
+    <i class="icon fa fa-plus m-0" title="Reopen column" aria-hidden="true"></i>
+    <span class="sr-only">{{#str}}reopencolumn, gradereport_grader, {{name}}{{/str}}</span>
+    
+<div class="popup">
+  <select class="dropdown">
+    <option value="pending">Pending</option>
+    <option value="notPending">Not Pending</option>
+    <option value="notRequirement">Not Requirement</option>
+  </select>
+</div>
+</button>
+<script>
+// Get all elements with the class name 'openPopupButton'
+var openPopupButtons = document.getElementsByClassName('openPopupButton');
+
+// Loop through each button and attach click event listener
+for (var i = 0; i < openPopupButtons.length; i++) {
+  openPopupButtons[i].addEventListener('click', function() {
+    // Get the parent element of the button which is the popup
+    var popup = this.parentNode.querySelector('.popup');
+    // Add 'active' class to show the popup
+    popup.classList.add('active');
+  });
+}
+
+// Get all elements with the class name 'dropdown'
+var dropdowns = document.getElementsByClassName('dropdown');
+
+// Loop through each dropdown and attach change event listener
+for (var i = 0; i < dropdowns.length; i++) {
+  dropdowns[i].addEventListener('change', function() {
+    var selectedValue = this.value;
+    // Do something with the selected value
+    console.log('Selected value:', selectedValue);
+  });
+}
+</script>
+
+
